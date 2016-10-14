@@ -1,0 +1,28 @@
+@import (reference) "./variables";
+
+html {
+  height: 100%;
+  overflow: hidden;
+
+  body {
+    background: #ebeef0;
+    height: 100%;
+
+    .pui-container {
+      padding: 0 @container-padding;
+
+      .pui-inner-wrapper {
+        height: 100%;
+        width: 100%;
+
+      }
+
+      &.wrapper {
+        height: calc(100% ~ '-' @header-height);
+        margin-top: 60px;
+        overflow: auto;
+
+      }
+    }
+  }
+}
