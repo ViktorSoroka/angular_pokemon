@@ -1,10 +1,11 @@
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path              = require('path');
 
-const srcPath = path.join(__dirname, 'app');
-const devTools   = true;
+const srcPath  = path.join(__dirname, 'app');
+const devTools = true;
 
 const dstPath    = 'distrib';
 const fontsPath  = '/fonts/';
@@ -98,6 +99,9 @@ const webpackConfig = module.exports = {
       hash    : true,
       template: 'app/index.html'
     }),
+    new OpenBrowserPlugin({
+      url: 'http://localhost:9000'
+    }),
     new ExtractTextPlugin('[name].css')
   ]
 };
@@ -108,13 +112,13 @@ webpackConfig.plugins.push(commonChunkPlugin);
 
 if (devTools) {
   // Add debug tools
-Object.assign(webpackConfig, {
-  debug    : true,
-  devtool  : 'source-map',
-  devServer: {
-    contentBase       : `./${ dstPath }`,
-    historyApiFallback: true,
-    port              : 9000
-  }
-});
+  Object.assign(webpackConfig, {
+    debug    : true,
+    devtool  : 'source-map',
+    devServer: {
+      contentBase       : `./${ dstPath }`,
+      historyApiFallback: true,
+      port              : 9000
+    }
+  });
 }
