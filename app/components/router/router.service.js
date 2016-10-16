@@ -7,6 +7,10 @@
 export default function () {
   let defaultState = 'main';
 
+  this.setDefaultState = newDefaultState => {
+    defaultState = newDefaultState;
+  };
+
   this.$get = /*@ngInject*/$injector => {
     const $state = $injector.get('$state');
 

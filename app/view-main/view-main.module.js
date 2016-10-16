@@ -1,6 +1,6 @@
 import angular          from 'angular';
 
-import mainComponent    from './view-main.component';
+import component    from './view-main.component';
 
 import './view-main.less';
 
@@ -13,18 +13,20 @@ import './view-main.less';
  */
 export default angular.module('pokemonViewMain', [])
 
-  .config(/*@ngInject*/($stateProvider, $urlRouterProvider) => {
+  .config(/*@ngInject*/($stateProvider, $urlRouterProvider, routerFctProvider) => {
+
+    routerFctProvider.setDefaultState('main.pokemons');
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
       .state('main', {
         url       : '/app',
-        // 'abstract': true,
+        'abstract': true,
         component : 'pokemonMainComponent'
       })
   })
   .run(/*@ngInject*/routerFct => {
     routerFct.init();
   })
-  .component('pokemonMainComponent', mainComponent)
+  .component('pokemonMainComponent', component)
   .name;

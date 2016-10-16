@@ -1,28 +1,25 @@
 @import (reference) "./variables";
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);
 
 html {
   height: 100%;
   overflow: hidden;
 
   body {
-    background: #ebeef0;
     height: 100%;
+    font: 100% 'Ubuntu Condensed',  Helvetica, sans-serif;
+    background-color: @light-blue;
+  }
+}
 
-    .pui-container {
-      padding: 0 @container-padding;
+.pui-wrapper {
+  height: 100%;
+  font-size: 2em;
+}
 
-      .pui-inner-wrapper {
-        height: 100%;
-        width: 100%;
 
-      }
-
-      &.wrapper {
-        height: calc(100% ~ '-' @header-height);
-        margin-top: 60px;
-        overflow: auto;
-
-      }
-    }
+@media only screen and (min-width: 768px) {
+  .pui-wrapper {
+    font-size: 2em;
   }
 }

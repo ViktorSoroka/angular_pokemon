@@ -1,0 +1,25 @@
+@import (reference) "~components/styles/variables";
+
+pokemon-footer {
+  .pui-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: @footer-height-xs;
+    box-sizing: border-box;
+    font-size: 0.7em;
+    background: @cyan-light;
+  }
+
+  .pui-footer__copyright {
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  pokemon-footer {
+    .pui-footer {
+      height: @footer-height-sm;
+    }
+  }
+}

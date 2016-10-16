@@ -1,7 +1,7 @@
 import angular from 'angular';
 import ngResource from 'angular-resource';
 
-import Requests from './pokemons.service';
+import Pokemons from './pokemons.service';
 
 /**
  * @ngdocs overview
