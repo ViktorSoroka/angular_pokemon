@@ -4,12 +4,12 @@ import modelPokemons  from './pokemons';
 
 /**
  * @ngdocs overview
- * @name pokemonModels
+ * @name appModels
  *
  * @description
  * Module for holding models
  */
-export default angular.module('pokemonModels', [
+export default angular.module('appModels', [
   modelPokemons
 ])
 

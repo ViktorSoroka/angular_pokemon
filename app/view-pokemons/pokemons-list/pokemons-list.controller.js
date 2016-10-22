@@ -1,10 +1,9 @@
 /**
  * @ngdoc controller
- * @name pkmLayouts.HeaderLayoutCtrl
+ * @name pkmPokemonsList.PokemonsListCtrl
  * @class
  *
  * @description Controller for header component
  */
-export default class HeaderLayoutCtrl {
-
+export default class PokemonsListCtrl {
 }

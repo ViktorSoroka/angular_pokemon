@@ -2,7 +2,7 @@ import angular from 'angular';
 
 /**
  * @ngdoc service
- * @name pokemonRequests.RequestsFct
+ * @name pkmPokemons.PokemonsFct
  *
  * @description Model for requests. Returns Request model
  */
@@ -11,20 +11,20 @@ export default /*@ngInject*/$injector => { //eslint-disable-line max-statements
 
   /**
    * @ngdoc service
-   * @name pokemonRequests.Request
+   * @name pkmPokemons.Pokemon
    * @class
    * @extends $resource
    *
    * @description Model for requests. Returned by RequestsFct
    */
-  const Pokemons = $resource('https://pokeapi.co/api/v2/pokemon/', {
+  const Pokemon = $resource('https://pokeapi.co/api/v2/pokemon/', {
     isArray: true
   }, {
 
     /**
      * @ngdoc method
-     * @methodOf pokemonRequests.Request
-     * @name pokemonRequests.Request#get
+     * @methodOf pkmPokemons.Pokemon
+     * @name pkmPokemons.Pokemon#get
      * @restMethod GET
      *
      * @param {string} id
@@ -39,5 +39,5 @@ export default /*@ngInject*/$injector => { //eslint-disable-line max-statements
 
   });
 
-  return Pokemons;
+  return Pokemon;
 };

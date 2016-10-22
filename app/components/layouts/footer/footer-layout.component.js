@@ -5,7 +5,7 @@ import './footer.less';
 
 /**
  * @ngdoc directive
- * @name pokemonLayouts.pokemonFooter
+ * @name pkmLayouts.pkmFooter
  * @scope
  *
  * @description Footer layout component

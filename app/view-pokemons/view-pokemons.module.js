@@ -1,24 +1,25 @@
-import angular          from 'angular';
+import angular from 'angular';
 
 import component    from './view-pokemons.component';
-
-import './view-pokemons.less';
+import pokemonsList from './pokemons-list';
 
 /**
  * @ngdoc overview
- * @name pokemonMain
+ * @name pkmViewPokemons.pkmViewPokemons
  *
  * @description
  * Hold component for generating main layout
  */
-export default angular.module('pokemonViewPokemons', [])
+export default angular.module('pkmViewPokemons', [
+  pokemonsList
+])
 
   .config(/*@ngInject*/$stateProvider => {
     $stateProvider
       .state('main.pokemons', {
         url      : '/pokemons',
-        component: 'pokemonViewPokemons'
+        component: 'pkmViewPokemons'
       })
   })
-  .component('pokemonViewPokemons', component)
+  .component('pkmViewPokemons', component)
   .name;

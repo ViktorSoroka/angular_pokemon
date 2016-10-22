@@ -1,17 +1,17 @@
-import angular from 'angular';
+import angular    from 'angular';
 import ngResource from 'angular-resource';
 
 import Pokemons from './pokemons.service';
 
 /**
  * @ngdocs overview
- * @name pokemonPokemons
+ * @name pkmPokemons
  *
  * @description
  * Module for requests models
  */
-export default angular.module('pokemonPokemons', [ //eslint-disable-line angular/file-name
-    ngResource
-  ])
+export default angular.module('pkmPokemons', [ //eslint-disable-line angular/file-name
+  ngResource
+])
   .factory('PokemonsFct', Pokemons)
   .name;

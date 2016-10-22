@@ -8,30 +8,12 @@ import templateUrl from './view-main.tpl.html';
  * Controller for Main component
  */
 class MainCtrl {
-  /*@ngInject*/
-  constructor($injector) {
-    this.Pokemons = $injector.get('PokemonsFct');
-    this.$state   = $injector.get('$state');
-
-    this.loadData();
-  }
-
-  loadData() {
-    const pokemons = this.Pokemons.get();
-
-    pokemons
-      .$promise
-      .then(data => {
-        // console.log(data);
-      });
-
-  }
 }
 
 
 /**
  * @ngdoc directive
- * @name pokemonMain.pokemonMainLayout
+ * @name pkmMain.pkmMainLayout
  *
  * @scope
  *

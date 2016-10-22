@@ -1,13 +1,13 @@
 /**
  * @ngdoc overview
- * @name pokemonServerRequestUrl
+ * @name pkmServerRequestUrl
  * @description
  *
  * Module for interceptor to change request url
  */
 import angular from 'angular';
 
-export default angular.module('pokemonServerRequestUrl', [])  //eslint-disable-line angular/file-name
+export default angular.module('pkmServerRequestUrl', [])  //eslint-disable-line angular/file-name
   .config(/*@ngInject*/$httpProvider => {
     $httpProvider.interceptors.push('urlInterceptorFct');
   })
@@ -17,7 +17,7 @@ export default angular.module('pokemonServerRequestUrl', [])  //eslint-disable-l
 
 /**
  * @ngdocs service
- * @name pokemonServerRequestUrl.urlInterceptorFct
+ * @name pkmServerRequestUrl.urlInterceptorFct
  */
 /*@ngInject*/
 function urlInterceptorFactory(baseApiUrl) {

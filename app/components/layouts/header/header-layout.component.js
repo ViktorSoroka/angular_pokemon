@@ -5,7 +5,7 @@ import './header.less';
 
 /**
  * @ngdoc directive
- * @name pokemonLayouts.pokemonHeader
+ * @name pkmLayouts.pkmHeader
  * @scope
  *
  * @description Header layout component

@@ -8,7 +8,7 @@ import models             from './models';
 import serverInteraction  from './server-interaction';
 
 
-export default angular.module('pokemonComponents', [
+export default angular.module('pkmComponents', [
   layouts,
   router,
   models,

@@ -1,6 +1,6 @@
 /**
  * @ngdoc controller
- * @name pokemonLayouts.FooterLayoutCtrl
+ * @name pkmLayouts.FooterLayoutCtrl
  * @class
  *
  * @description Controller for header component

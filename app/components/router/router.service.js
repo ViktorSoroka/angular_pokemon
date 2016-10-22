@@ -1,6 +1,6 @@
 /**
  * @ngdoc service
- * @name pokemonRouter.routerFct
+ * @name pkmRouter.routerFct
  *
  * @description
  */
@@ -17,8 +17,8 @@ export default function () {
     return {
       /**
        * @ngdoc method
-       * @methodOf pokemonRouter.routerFct
-       * @name pokemonRouter.routerFct#init
+       * @methodOf pkmRouter.routerFct
+       * @name pkmRouter.routerFct#init
        *
        * @description Init state watcher for access purposes
        */
@@ -29,8 +29,8 @@ export default function () {
 
       /**
        * @ngdoc method
-       * @name pokemonRouter.routerFct#letsWork
-       * @methodOf pokemonRouter.routerFct
+       * @name pkmRouter.routerFct#letsWork
+       * @methodOf pkmRouter.routerFct
        *
        * @description This method jumps to default sate or state to which UI should back after login (using URL parameters)
        */

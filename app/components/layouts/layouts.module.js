@@ -11,10 +11,10 @@ import footerComponent from './footer/footer-layout.component';
  * @description
  * Module for layout components like header or footer
  */
-export default angular.module('pokemonLayouts', [ // eslint-disable-line angular/file-name
+export default angular.module('pkmLayouts', [ // eslint-disable-line angular/file-name
   router
 ])
 
-  .component('pokemonHeader', headerComponent)
-  .component('pokemonFooter', footerComponent)
+  .component('pkmHeader', headerComponent)
+  .component('pkmFooter', footerComponent)
   .name;

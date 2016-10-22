@@ -3,7 +3,7 @@ import componentsModule from './components';
 import viewMain         from './view-main';
 import viewPokemons     from './view-pokemons';
 
-angular.module('pokemonApp', [
+angular.module('pkmApp', [
   componentsModule,
   viewMain,
   viewPokemons
