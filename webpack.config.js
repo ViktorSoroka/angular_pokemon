@@ -4,8 +4,11 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path              = require('path');
 
-const srcPath  = path.join(__dirname, 'app');
-const devTools = true;
+const srcPath    = path.join(__dirname, 'app');
+const nodeEnv    = process.env.NODE_ENV;
+const production = nodeEnv && nodeEnv.indexOf('prod') > -1;
+
+const devTools = !production;
 
 const dstPath    = 'distrib';
 const fontsPath  = '/fonts/';
@@ -54,8 +57,9 @@ const webpackConfig = module.exports = {
       {
         test  : /\.less$/,
         loader: ExtractTextPlugin.extract([
-          `css?minimize&sourceMap`,
-          `less?sourceMap`
+          `css?minimize${ production ? '' : '&sourceMap' }`,
+          `less?sourceMap`,
+          `less${ production ? '' : '?sourceMap' }`
         ])
       },
       { //simple tpls will be accessible through html string
@@ -99,9 +103,6 @@ const webpackConfig = module.exports = {
       hash    : true,
       template: 'app/index.html'
     }),
-    new OpenBrowserPlugin({
-      url: 'http://localhost:9000'
-    }),
     new ExtractTextPlugin('[name].css')
   ]
 };
@@ -109,6 +110,17 @@ const webpackConfig = module.exports = {
 const commonChunkPlugin = new webpack.optimize.CommonsChunkPlugin('common', 'common.js');
 
 webpackConfig.plugins.push(commonChunkPlugin);
+
+if (production) {
+  //Add minifying
+  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    minimize: true,
+    compress: {
+      unused   : true,
+      dead_code: true
+    }
+  }));
+}
 
 if (devTools) {
   // Add debug tools
@@ -121,4 +133,8 @@ if (devTools) {
       port              : 9000
     }
   });
+
+  webpackConfig.plugins.push(new OpenBrowserPlugin({
+    url: 'http://localhost:9000'
+  }));
 }

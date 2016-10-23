@@ -7,7 +7,10 @@
   "main": "app/index.html",
   "scripts": {
     "start": "npm run dev",
-    "dev": "webpack-dev-server --hot --inline --progress --colors"
+    "clean:distrib": "rm -rf distrib/",
+    "dev": "webpack-dev-server --hot --inline --progress --colors",
+    "compile:prod": "npm run clean:distrib && NODE_ENV=prod webpack",
+    "compile:prod:win": "SET NODE_ENV=prod && webpack"
   },
   "devDependencies": {
     "angular": "~1.5.7",
