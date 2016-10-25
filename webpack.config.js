@@ -34,7 +34,7 @@ const webpackConfig = module.exports = {
   },
   output : {
     path      : path.join(__dirname, dstPath),
-    publicPath: '',
+    publicPath: 'angular_pokemon/',
     filename  : '[name].js'
   },
 
