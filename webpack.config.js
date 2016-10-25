@@ -58,7 +58,6 @@ const webpackConfig = module.exports = {
         test  : /\.less$/,
         loader: ExtractTextPlugin.extract([
           `css?minimize${ production ? '' : '&sourceMap' }`,
-          `less?sourceMap`,
           `less${ production ? '' : '?sourceMap' }`
         ])
       },

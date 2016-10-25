@@ -1,19 +1,15 @@
 @import (reference) "~components/styles/variables";
 @import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);
 
-pkm-main-component {
-  .pui-main {
-    height: calc(100% ~ '-' @header-height-xs ~ '-' @footer-height-xs);
-    padding: 30px;
-    font-size: 0.7em;
-    overflow-y: auto;
-  }
+.pui-main {
+  height: calc(100% ~ '-' @header-height-xs ~ '-' @footer-height-xs);
+  padding: 30px;
+  font-size: 0.7em;
+  overflow-y: auto;
 }
 
 @media only screen and (min-width: 768px) {
-  pkm-main-component {
-    .pui-main {
-      height: calc(100% ~ '-' @header-height-sm ~ '-' @footer-height-sm);
-    }
+  .pui-main {
+    height: calc(100% ~ '-' @header-height-sm ~ '-' @footer-height-sm);
   }
 }
