@@ -10,7 +10,9 @@
     "clean:distrib": "rm -rf distrib/",
     "dev": "webpack-dev-server --hot --inline --progress --colors",
     "compile:prod": "npm run clean:distrib && NODE_ENV=prod webpack",
-    "compile:prod:win": "npm run clean:distrib && SET NODE_ENV=prod && webpack"
+    "compile:prod:win": "npm run clean:distrib && SET NODE_ENV=prod && webpack",
+    "predeploy": "npm run compile:prod:win",
+    "deploy": "gh-pages -d distrib"
   },
   "devDependencies": {
     "angular": "~1.5.7",
@@ -26,6 +28,7 @@
     "webpack": "~1.13.0",
     "webpack-dev-server": "~1.15.x",
     "file-loader": "~0.8.5",
+    "gh-pages": "^0.12.0",
     "html-loader": "~0.4.3",
     "css-loader": "~0.23.1",
     "style-loader": "~0.13.1",

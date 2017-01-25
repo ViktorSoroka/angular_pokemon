@@ -34,7 +34,6 @@ const webpackConfig = module.exports = {
   },
   output : {
     path      : path.join(__dirname, dstPath),
-    publicPath: 'angular_pokemon/',
     filename  : '[name].js'
   },
 
@@ -111,6 +110,8 @@ const commonChunkPlugin = new webpack.optimize.CommonsChunkPlugin('common', 'com
 webpackConfig.plugins.push(commonChunkPlugin);
 
 if (production) {
+  webpackConfig.output.publicPath = 'angular_pokemon/';
+
   //Add minifying
   webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
     minimize: true,
