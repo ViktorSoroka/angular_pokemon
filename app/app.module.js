@@ -1,10 +1,10 @@
-import angular          from 'angular';
-import componentsModule from './components';
-import viewMain         from './view-main';
-import viewPokemons     from './view-pokemons';
-
+"use strict";
+var angular = require('angular');
+var components_1 = require('./components');
+var view_main_1 = require('./view-main');
+var view_pokemons_1 = require('./view-pokemons');
 angular.module('pkmApp', [
-  componentsModule,
-  viewMain,
-  viewPokemons
+    components_1.default,
+    view_main_1.default,
+    view_pokemons_1.default
 ]);

@@ -19,7 +19,7 @@ const common = require(`${ srcPath }/vendors`);
 const webpackConfig = module.exports = {
   target : 'web',
   entry  : {
-    module: path.join(srcPath, 'app.module.js'),
+    module: path.join(srcPath, 'app.module.ts'),
     common
   },
   resolve: {
@@ -28,24 +28,23 @@ const webpackConfig = module.exports = {
       components: 'components',
       styles    : 'components/styles'
     },
-    extensions: ['', '.js'],
+    extensions: ['', '.ts', '.js'],
 
     modulesDirectories: ['node_modules', 'app']
   },
   output : {
     path      : path.join(__dirname, dstPath),
-    publicPath: 'angular_pokemon/',
     filename  : '[name].js'
   },
 
   module : {
     loaders: [
       {
-        test   : /^((?!\.min).)*\.js$/,
+        test   : /^((?!\.min).)*\.ts$/,
         exclude: /node_modules/,
         loaders: [
           'ng-annotate',
-          'babel'
+          'ts-loader'
         ]
       },
       {
@@ -63,7 +62,7 @@ const webpackConfig = module.exports = {
       },
       { //simple tpls will be accessible through html string
         test   : /^((?!tpl).)*\.html$/,
-        loaders: ['html'],
+        loaders: ['raw'],
         exclude: 'index.html'
       },
       { // templates through template cache
@@ -111,6 +110,8 @@ const commonChunkPlugin = new webpack.optimize.CommonsChunkPlugin('common', 'com
 webpackConfig.plugins.push(commonChunkPlugin);
 
 if (production) {
+  webpackConfig.output.publicPath = 'angular_pokemon/';
+
   //Add minifying
   webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
     minimize: true,

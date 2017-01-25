@@ -1,16 +1,8 @@
-import angular         from 'angular';
-
-import modelPokemons  from './pokemons';
-
-/**
- * @ngdocs overview
- * @name appModels
- *
- * @description
- * Module for holding models
- */
-export default angular.module('appModels', [
-  modelPokemons
+"use strict";
+var angular = require('angular');
+var pokemons_1 = require('./pokemons');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = angular.module('appModels', [
+    pokemons_1.default
 ])
-
-  .name;
+    .name;

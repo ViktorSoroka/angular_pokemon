@@ -1,17 +1,8 @@
-import controller  from './footer-layout.controller';
-import templateUrl from './footer-layout.tpl.html';
-import './footer.less';
-
-
-/**
- * @ngdoc directive
- * @name pkmLayouts.pkmFooter
- * @scope
- *
- * @description Footer layout component
- */
-export default {
-  templateUrl,
-  controller,
-  controllerAs: 'footer'
+"use strict";
+var footer_layout_controller_1 = require('./footer-layout.controller');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
+    templateUrl: './footer-layout.tpl.html',
+    controller: footer_layout_controller_1.default,
+    controllerAs: 'footer'
 };

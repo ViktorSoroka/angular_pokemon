@@ -1,21 +1,12 @@
-import templateUrl from './pokemons-list.tpl.html';
-
-import controller from './pokemons-list.controller';
-
-/**
- * @ngdoc directive
- * @name pkmPokemonsList.pkmPokemonsList
- *
- * @scope
- *
- * @description
- * Component to render pokemons list
- */
-export default {
-  templateUrl,
-  controller: controller,
-  bindings: {
-    pokemons: '<'
-  },
-  controllerAs: 'pokemonsList'
+// import * as templateUrl from './pokemons-list.tpl.html';
+"use strict";
+var pokemons_list_controller_1 = require('./pokemons-list.controller');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
+    templateUrl: './pokemons-list.tpl.html',
+    controller: pokemons_list_controller_1.default,
+    bindings: {
+        pokemons: '<'
+    },
+    controllerAs: 'pokemonsList'
 };

@@ -1,5 +1,5 @@
-import templateUrl from './view-main.tpl.html';
-
+// import templateUrl from './view-main.tpl.html';
+"use strict";
 /**
  * @ngdoc controller
  *
@@ -7,20 +7,13 @@ import templateUrl from './view-main.tpl.html';
  * @description
  * Controller for Main component
  */
-class MainCtrl {
-}
-
-
-/**
- * @ngdoc directive
- * @name pkmMain.pkmMainLayout
- *
- * @scope
- *
- * @description
- * Component to render main layout
- */
-export default {
-  templateUrl,
-  controller: MainCtrl
+var MainCtrl = (function () {
+    function MainCtrl() {
+    }
+    return MainCtrl;
+}());
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
+    template: './view-main.tpl.html',
+    controller: MainCtrl
 };

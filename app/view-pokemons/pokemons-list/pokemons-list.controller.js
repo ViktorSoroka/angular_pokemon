@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc controller
  * @name pkmPokemonsList.PokemonsListCtrl
@@ -5,5 +6,10 @@
  *
  * @description Controller for header component
  */
-export default class PokemonsListCtrl {
-}
+var PokemonsListCtrl = (function () {
+    function PokemonsListCtrl() {
+    }
+    return PokemonsListCtrl;
+}());
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = PokemonsListCtrl;

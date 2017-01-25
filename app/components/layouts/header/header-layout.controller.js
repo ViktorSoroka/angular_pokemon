@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc controller
  * @name pkmLayouts.HeaderLayoutCtrl
@@ -5,6 +6,10 @@
  *
  * @description Controller for header component
  */
-export default class HeaderLayoutCtrl {
-
-}
+var HeaderLayoutCtrl = (function () {
+    function HeaderLayoutCtrl() {
+    }
+    return HeaderLayoutCtrl;
+}());
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = HeaderLayoutCtrl;

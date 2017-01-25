@@ -1,25 +1,17 @@
-import angular from 'angular';
-
-import component    from './view-pokemons.component';
-import pokemonsList from './pokemons-list';
-
-/**
- * @ngdoc overview
- * @name pkmViewPokemons.pkmViewPokemons
- *
- * @description
- * Hold component for generating main layout
- */
-export default angular.module('pkmViewPokemons', [
-  pokemonsList
+"use strict";
+var angular = require('angular');
+var view_pokemons_component_1 = require('./view-pokemons.component');
+var pokemons_list_1 = require('./pokemons-list');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = angular.module('pkmViewPokemons', [
+    pokemons_list_1.default
 ])
-
-  .config(/*@ngInject*/$stateProvider => {
+    .config(/*@ngInject*/ function (/*@ngInject*/ $stateProvider) {
     $stateProvider
-      .state('main.pokemons', {
-        url      : '/pokemons',
+        .state('main.pokemons', {
+        url: '/pokemons',
         component: 'pkmViewPokemons'
-      })
-  })
-  .component('pkmViewPokemons', component)
-  .name;
+    });
+})
+    .component('pkmViewPokemons', view_pokemons_component_1.default)
+    .name;

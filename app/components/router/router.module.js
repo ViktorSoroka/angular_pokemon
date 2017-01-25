@@ -1,20 +1,13 @@
-import angular from 'angular';
-
-import 'angular-ui-router';
-
-import router from './router.service';
-
-
-/**
- * @ngdoc overview
- * @name pkmRouter
- *
- * @description
- * Module for router customization and helpers
- */
-export default angular.module('pkmRouter', [ //eslint-disable-line angular/file-name
-  'ui.router'
+"use strict";
+var angular = require('angular');
+require('angular-ui-router');
+var router_service_1 = require('./router.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = angular.module('pkmRouter', [
+    'ui.router'
 ])
-  .config(/*@ngInject*/$locationProvider => $locationProvider.html5Mode(true))
-  .provider('routerFct', router)
-  .name;
+    .config(/*@ngInject*/ function ($locationProvider) {
+    $locationProvider.html5Mode(true);
+})
+    .provider('routerFct', router_service_1.default)
+    .name;

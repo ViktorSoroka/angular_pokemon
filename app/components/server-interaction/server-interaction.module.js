@@ -1,24 +1,16 @@
-import angular    from 'angular';
-import ngResource from 'angular-resource';
-
-import router from '../router';
-
-import acServerUrl from './server-url.service.js';
-
-/**
- * @ngdoc overview
- * @name pkmServerInteraction
- *
- * @description
- * Holds services, configuration and interceptors for server interaction services
- */
-export default angular.module('pkmServerInteraction', [ //eslint-disable-line angular/file-name
-  ngResource,
-  router,
-  acServerUrl
+"use strict";
+var angular = require('angular');
+var ngResource = require('angular-resource');
+var router_1 = require('../router');
+var server_url_service_1 = require('./server-url.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = angular.module('pkmServerInteraction', [
+    ngResource,
+    router_1.default,
+    server_url_service_1.default
 ])
-  .config(/*@ngInject*/$resourceProvider => {
+    .config(/*@ngInject*/ function (/*@ngInject*/ $resourceProvider) {
     // Don't strip trailing slashes from calculated URLs
     $resourceProvider.defaults.stripTrailingSlashes = true;
-  })
-  .name;
+})
+    .name;

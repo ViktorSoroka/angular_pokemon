@@ -1,17 +1,8 @@
-import controller  from './header-layout.controller';
-import templateUrl from './header-layout.tpl.html';
-
-import './header.less';
-
-/**
- * @ngdoc directive
- * @name pkmLayouts.pkmHeader
- * @scope
- *
- * @description Header layout component
- */
-export default {
-  templateUrl,
-  controller,
-  controllerAs: 'header'
+"use strict";
+var header_layout_controller_1 = require('./header-layout.controller');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
+    templateUrl: './header-layout.tpl.html',
+    controller: header_layout_controller_1.default,
+    controllerAs: 'header'
 };

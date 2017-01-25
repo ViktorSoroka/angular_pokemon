@@ -1,16 +1,8 @@
-import angular from 'angular';
-
-import component from './pokemons-list.component';
-
-import './pokemons-list.less';
-
-/**
- * @ngdoc overview
- * @name pkmPokemonsList
- *
- * @description
- * Hold component for generating main layout
- */
-export default angular.module('pkmPokemonsList', [])
-  .component('pkmPokemonsList', component)
-  .name;
+"use strict";
+var angular = require('angular');
+var pokemons_list_component_1 = require('./pokemons-list.component');
+require('./pokemons-list.less');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = angular.module('pkmPokemonsList', [])
+    .component('pkmPokemonsList', pokemons_list_component_1.default)
+    .name;
