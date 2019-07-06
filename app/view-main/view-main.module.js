@@ -19,7 +19,7 @@ export default angular.module('pkmViewMain', [])
 
     $stateProvider
       .state('main', {
-        url       : '/app',
+        url       : '',
         'abstract': true,
         component : 'pkmMainComponent'
       });

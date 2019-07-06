@@ -1,97 +1,132 @@
-const webpack           = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path              = require('path');
+const HtmlWebpackPlugin         = require('html-webpack-plugin');
+const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
+const MiniCssExtractPlugin      = require('mini-css-extract-plugin');
+const path                      = require('path');
 
 const srcPath    = path.join(__dirname, 'app');
 const nodeEnv    = process.env.NODE_ENV;
-const production = nodeEnv && nodeEnv.indexOf('prod') > -1;
+const production = nodeEnv && nodeEnv.indexOf('production') > -1;
 
 const devTools = !production;
 
-const dstPath    = 'distrib';
-const fontsPath  = '/fonts/';
-const imagesPath = '/images/';
+const distPath     = 'dist';
+const fontsPath    = '/fonts/';
+const imagesPath   = '/images/';
+const baseProdPath = '/angular_pokemon/';
 
-const common = require(`${ srcPath }/vendors`);
+const commons = require(`${srcPath}/vendors`);
 
 const webpackConfig = module.exports = {
-  target : 'web',
+  mode: production ? 'production' : 'development',
   entry  : {
     module: path.join(srcPath, 'app.module.js'),
-    common
+    commons
   },
   resolve: {
-    root      : srcPath,
     alias     : {
-      components: 'components',
-      styles    : 'components/styles'
+      components: path.resolve(__dirname, './app/components/'),
+      styles    : path.resolve(__dirname, './app/components/styles/')
     },
-    extensions: ['', '.js'],
-
-    modulesDirectories: ['node_modules', 'app']
+    extensions: ['*', '.js'],
+    modules: [
+      path.resolve(__dirname, 'app'),
+      'node_modules',
+    ],
   },
   output : {
-    path      : path.join(__dirname, dstPath),
-    filename  : '[name].js'
+    path      : path.join(__dirname, distPath),
+    filename  : '[name].js',
+    publicPath: production ? baseProdPath : ''
   },
-
   module : {
-    loaders: [
+    rules: [
       {
         test   : /^((?!\.min).)*\.js$/,
         exclude: /node_modules/,
-        loaders: [
-          'ng-annotate',
-          'babel'
+        use    : [
+          'babel-loader',
+          'auto-ngtemplate-loader'
         ]
       },
       {
         test  : /\.css$/,
-        loader: ExtractTextPlugin.extract([
-          'css'
-        ])
+        use   : [
+          {
+            loader: devTools ? 'style-loader' : MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false
+            }
+          },
+        ],
       },
       {
         test  : /\.less$/,
-        loader: ExtractTextPlugin.extract([
-          `css?minimize${ production ? '' : '&sourceMap' }`,
-          `less${ production ? '' : '?sourceMap' }`
-        ])
+        use   : [
+          {
+            loader: devTools ? 'style-loader' : MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: devTools ? [] : [
+                require('autoprefixer')({}),
+                require('cssnano')({ preset: 'default' })
+              ],
+              minimize: devTools
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              paths: [path.resolve(__dirname, "node_modules")]
+            }
+          }
+        ],
       },
-      { //simple tpls will be accessible through html string
+      {
         test   : /^((?!tpl).)*\.html$/,
-        loaders: ['html'],
-        exclude: 'index.html'
+        use    : ['html-loader']
       },
       { // templates through template cache
         test  : /\.tpl\.html$/,
-        loader: `ngtemplate?relativeTo=${ (path.resolve(__dirname, './app')) }/!html`
+        use   : [
+          `ngtemplate-loader?relativeTo=${(path.resolve(__dirname, 'app'))}/`,
+          'html-loader'
+        ]
       },
       {
         test  : /\.woff(\?.*)?$/,
-        loader: `url?prefix=fonts/&name=${ fontsPath }[name].[ext]&limit=10000&mimetype=application/font-woff`
+        use   : [`url-loader?prefix=fonts/&name=${fontsPath}[name].[ext]&limit=10000&mimetype=application/font-woff`]
       },
       {
         test  : /\.woff2(\?.*)?$/,
-        loader: `url?prefix=fonts/&name=${ fontsPath }[name].[ext]&limit=10000&mimetype=application/font-woff2`
+        use: [`url-loader?prefix=fonts/&name=${fontsPath}[name].[ext]&limit=10000&mimetype=application/font-woff2`]
       },
       {
         test  : /\.ttf(\?.*)?$/,
-        loader: `url?prefix=fonts/&name=${ fontsPath }[name].[ext]&limit=10000&mimetype=application/octet-stream`
+        use: [`url-loader?prefix=fonts/&name=${fontsPath}[name].[ext]&limit=10000&mimetype=application/octet-stream`]
       },
       {
         test  : /\.eot(\?.*)?$/,
-        loader: `file?prefix=fonts/&name=${ fontsPath }[name].[ext]`
+        use   : [`file-loader?prefix=fonts/&name=${fontsPath}[name].[ext]`]
       },
       {
         test  : /\.svg(\?.*)?$/,
-        loader: `url-loader?&name=${ imagesPath }[name].[ext]&limit=10000&mimetype=image/svg+xml`
+        use   : [`url-loader?&name=${imagesPath}[name].[ext]&limit=10000&mimetype=image/svg+xml`]
       },
       {
         test  : /\.(png|jpg)$/,
-        loader: `url-loader?&name=${ imagesPath }[name].[ext]&limit=10000`
+        use   : [`url-loader?&name=${imagesPath}[name].[ext]&limit=10000`]
       }
     ]
   },
@@ -101,40 +136,30 @@ const webpackConfig = module.exports = {
       hash    : true,
       template: 'app/index.html'
     }),
-    new ExtractTextPlugin('[name].css')
-  ]
-};
-
-const commonChunkPlugin = new webpack.optimize.CommonsChunkPlugin('common', 'common.js');
-
-webpackConfig.plugins.push(commonChunkPlugin);
-
-if (production) {
-  webpackConfig.output.publicPath = 'angular_pokemon/';
-
-  //Add minifying
-  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    minimize: true,
-    compress: {
-      unused   : true,
-      dead_code: true
+    new BaseHrefWebpackPlugin({ baseHref: production ? baseProdPath : '/' }),
+    new MiniCssExtractPlugin()
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]/,
+        },
+      }
     }
-  }));
-}
+  }
+};
 
 if (devTools) {
   // Add debug tools
   Object.assign(webpackConfig, {
-    debug    : true,
     devtool  : 'source-map',
     devServer: {
-      contentBase       : `./${ dstPath }`,
+      contentBase       : `./${distPath}`,
       historyApiFallback: true,
       port              : 9000
     }
   });
-
-  webpackConfig.plugins.push(new OpenBrowserPlugin({
-    url: 'http://localhost:9000'
-  }));
 }
